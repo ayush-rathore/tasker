@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import Button from "../components/Button";
 import Screen from "../components/Screen";
-// import Text from "../components/Text";
+import Text from "../components/Text";
 
 function Welcome() {
 	const onPress = () => {
@@ -13,7 +13,7 @@ function Welcome() {
 			<Text>Tasker</Text>
 			<View style={styles.welcome}>
 				<Image
-					source={require("../assets/home.png")}
+					source={require("../assets/images/home.png")}
 					style={styles.welcomeImage}
 				/>
 			</View>
