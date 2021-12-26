@@ -1,75 +1,54 @@
 // Register Screen
 
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import { Form, FormField, SubmitButton } from "../components/FormComponents";
+import {
+	Form,
+	FormField,
+	ErrorMessage,
+	SubmitButton,
+} from "../components/FormComponents";
 
-// import usersAPI from "../api/users";
-// import useAuth from "../auth/useAuth";
-// import useApi from "../hooks/useApi";
-// import ActivityIndicator from "../components/ActivityIndicator";
+import client from "../api/client";
 
 const validationSchema = Yup.object().shape({
-	name: Yup.string().required().label("Name"),
-	email: Yup.string().required().email().label("Email"),
+	username: Yup.string().required().label("Username"),
 	password: Yup.string().required().min(4).label("Password"),
 });
 
-function RegisterScreen() {
-	// const registerApi = useApi(usersAPI.register);
-	// const auth = useAuth();
-	// const [error, setError] = useState();
-
-	// const handleSubmit = async (userInfo) => {
-	// 	// const result = await registerApi.request(userInfo);
-	// 	const result = await usersAPI.register(userInfo);
-	// 	if (!result.ok) {
-	// 		if (result.data) setError(result.data.error);
-	// 		else {
-	// 			setError("An unexpected error occurred.");
-	// 			console.log(result);
-	// 		}
-	// 		return;
-	// 	}
-
-	// 	auth.logIn(result.data);
-	// };
+const RegisterScreen = ({ setUser }) => {
+	const handleSubmit = async (userInfo) => {
+		const response = await client.post("/user/signup", userInfo);
+		setUser(response.data);
+	};
 
 	return (
 		<>
-			{/* <ActivityIndicator visible={registerApi.loading} /> */}
 			<Screen style={styles.container}>
 				<Form
-					initialValues={{ name: "", email: "", password: "" }}
-					onSubmit={() => {
-						console.log("Registered");
-					}}
+					initialValues={{ username: "", password: "" }}
+					onSubmit={handleSubmit}
 					validationSchema={validationSchema}
 				>
+					<ErrorMessage
+						error="Invalid username or password"
+						visible={false}
+					/>
 					<FormField
 						autoCorrect={false}
 						icon="account"
-						name="name"
-						placeholder="Name"
-					/>
-					<FormField
-						autoCapitalize="none"
-						autoCorrect={false}
-						icon="email"
-						keyboardType="email-address"
-						name="email"
-						placeholder="Email"
-						textContentType="emailAddress"
+						name="username"
+						placeholder="Enter Username"
 					/>
 					<FormField
 						autoCapitalize="none"
 						autoCorrect={false}
 						icon="lock"
 						name="password"
-						placeholder="Password"
+						placeholder="Enter Password"
 						secureTextEntry
 						textContentType="password"
 					/>
@@ -78,7 +57,7 @@ function RegisterScreen() {
 			</Screen>
 		</>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
