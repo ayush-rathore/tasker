@@ -11,7 +11,6 @@ function AppText({ children, style }) {
 const styles = StyleSheet.create({
 	text: {
 		fontSize: 20,
-		fontFamily: "Roboto",
 		color: colors.dark,
 	},
 });
