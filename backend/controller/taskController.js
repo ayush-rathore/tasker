@@ -12,14 +12,14 @@ exports.addTask = (req, res) => {
 		})
 		.catch((error) => {
 			console.error("Error creating task");
-			return res.status(500).send(error);
+			return res.status(500).send("Error in creating task");
 		});
 };
 
-exports.getTask = (req, res) => {
+exports.getTask = async (req, res) => {
 	let { userID } = req.params;
 	userID = mongoose.Types.ObjectId(userID);
-	Task.find({ userID })
+	await Task.find({ userID })
 		.then((tasks) => {
 			console.info(userID);
 			if (tasks.length == 0) {
@@ -31,7 +31,7 @@ exports.getTask = (req, res) => {
 		})
 		.catch((error) => {
 			console.error("Task not found");
-			return res.status(500).send(error);
+			return res.status(404).send("Task not found");
 		});
 };
 
