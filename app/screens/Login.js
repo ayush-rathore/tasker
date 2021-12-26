@@ -10,62 +10,50 @@ import {
 	ErrorMessage,
 	SubmitButton,
 } from "../components/FormComponents/index.js";
-// import authApi from "../api/auth";
-// import useAuth from "../auth/useAuth";
+
+import client from "../api/client";
 
 const validationSchema = Yup.object().shape({
-	email: Yup.string().required().email().label("Email"),
+	username: Yup.string().required().label("Username"),
 	password: Yup.string().required().min(4).label("Password"),
 });
-function LoginScreen() {
-	// const { logIn } = useAuth();
-	// const [loginFailed, setLoginFailed] = useState(false);
 
-	// const handleSubmit = async ({ email, password }) => {
-	// 	const result = await authApi.login(email, password);
-	// 	if (!result.ok) return setLoginFailed(true);
-	// 	setLoginFailed(false);
-	// 	console.log(result.data);
-	// 	logIn(result.data);
-	// };
+const LoginScreen = ({ setUser }) => {
+	const handleSubmit = async (userInfo) => {
+		const response = await client.post("/user/login", userInfo);
+		setUser(response.data);
+	};
 	return (
 		<Screen style={styles.container}>
-			{/* <Image
-				source={require("../assets/logo-red.png")}
-				style={styles.logo}
-			/> */}
 			<Form
-				initialValues={{ email: "", password: "" }}
-				onSubmit={() => {
-					console.log("Logged In");
-				}}
+				initialValues={{ username: "", password: "" }}
+				onSubmit={handleSubmit}
 				validationSchema={validationSchema}
 			>
 				<ErrorMessage
-					error="Invalid email or password"
+					error="Invalid username or password"
 					visible={false}
 				/>
 				<FormField
-					placeholder="Email"
-					icon="email"
-					autoCapitalize="none"
 					autoCorrect={false}
-					keyboardType="email-address"
-					name="email"
+					icon="account"
+					name="username"
+					placeholder="Enter Username"
 				/>
 				<FormField
 					autoCapitalize="none"
 					autoCorrect={false}
-					placeholder="Password"
 					icon="lock"
-					secureTextEntry
 					name="password"
+					placeholder="Enter Password"
+					secureTextEntry
+					textContentType="password"
 				/>
 				<SubmitButton title="Login" />
 			</Form>
 		</Screen>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
