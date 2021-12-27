@@ -2,13 +2,9 @@ import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import Button from "../components/Button";
 import Screen from "../components/Screen";
-import AppText from "../components/Text";
 import colors from "../config/colors";
 
-function Welcome() {
-	const onPress = () => {
-		console.log("Button Pressed");
-	};
+function WelcomeScreen({ navigation }) {
 	return (
 		<Screen style={styles.container}>
 			<Text style={styles.text}>Tasker</Text>
@@ -19,9 +15,19 @@ function Welcome() {
 				/>
 			</View>
 			<View style={styles.button}>
-				<Button title="Login" onPress={onPress} />
+				<Button
+					title="Login"
+					onPress={() => navigation.navigate("Login")}
+				/>
 				<Text style={styles.register}>
-					Don't have an account? Register
+					Don't have an account?
+					<Text
+						style={styles.regText}
+						onPress={() => navigation.navigate("Register")}
+					>
+						{" "}
+						Register{" "}
+					</Text>
 				</Text>
 			</View>
 		</Screen>
@@ -58,6 +64,9 @@ const styles = StyleSheet.create({
 		top: 5,
 		fontSize: 17,
 	},
+	regText: {
+		color: colors.secondary,
+	},
 });
 
-export default Welcome;
+export default WelcomeScreen;

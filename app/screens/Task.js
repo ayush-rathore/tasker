@@ -1,60 +1,43 @@
 // Listing all the items
 
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList, StyleSheet } from "react-native";
+
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
-// import { useEffect } from "react";
-import AppText from "../components/AppText";
-import Button from "../components/Button";
-// import ActivityIndicator from "../components/ActivityIndicator";
-// import useApi from "../hooks/useApi";
-// import listings from "../components/listingData.js";
 
-function TaskScreen({ navigation }) {
-	// const {
-	// 	data: listings,
-	// 	error,
-	// 	loading,
-	// 	request: loadListing,
-	// } = useApi(listingAPI.getListings);
+import client from "../api/client";
+import User from "../context/User";
 
-	// useEffect(() => {
-	// 	loadListing();
-	// }, []);
+const TaskScreen = () => {
+	const { user, tasks, addTask } = User();
+
+	const getTasks = async () => {
+		const response = await client.get(`/task/get/${user._id}`);
+		addTask(response.data);
+	};
+
+	useEffect(() => {
+		getTasks();
+	}, []);
 
 	return (
 		<Screen style={styles.screen}>
-			{/* {error && (
-				<>
-					<AppText>Couldn't fetch the items.</AppText>
-					<Button
-						title="Retry"
-						onPress={loadListing}
-						color="primary"
-					/>
-				</>
-			)}
-			<ActivityIndicator visible={loading} /> */}
 			<FlatList
-				data={listings}
-				keyExtractor={(listing) => listing._id.toString()}
+				data={tasks}
+				keyExtractor={(item) => item._id}
 				renderItem={({ item }) => (
 					<Card
-						title={item.title}
-						price={item.price}
-						image={item.image}
-						onPress={() =>
-							// navigation.navigate("ListingsDetails", item)
-							console.log("Card tapped")
-						}
+						name={item.name}
+						description={item.description}
+						onPress={() => console.log(`${item.name}`)}
 					/>
 				)}
 			/>
 		</Screen>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	screen: {

@@ -12,14 +12,15 @@ import client from "../api/client";
 import User from "../context/User";
 
 const validationSchema = Yup.object().shape({
-	name: Yup.string().required().min(1).label("name"),
-	description: Yup.string().required().min(1).label("Description"),
+	name: Yup.string().required().min(5).label("Name"),
+	description: Yup.string().required().min(5).label("Description"),
 });
 
 const AddTask = () => {
 	const { user, addTask } = User();
 
 	const handleSubmit = async (taskInfo) => {
+		taskInfo.userID = user._id;
 		const response = await client.post("/task/add", taskInfo);
 		addTask(response.data);
 		console.log(response.data);
@@ -31,7 +32,6 @@ const AddTask = () => {
 				initialValues={{
 					name: "",
 					description: "",
-					userId: "61c88ba99857100016218f0f",
 				}}
 				onSubmit={handleSubmit}
 				validationSchema={validationSchema}
