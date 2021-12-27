@@ -3,7 +3,7 @@ import { useContext } from "react";
 import UserContext from "./context";
 
 const User = () => {
-	const { user, setUser } = useContext(UserContext);
+	const { user, setUser, tasks, setTasks } = useContext(UserContext);
 
 	const login = (data) => {
 		setUser(data);
@@ -12,7 +12,12 @@ const User = () => {
 	const logout = () => {
 		setUser(null);
 	};
-	return { user, login, logout };
+
+	const addTask = (data) => {
+		setTasks(data);
+	};
+
+	return { user, login, logout, tasks, addTask };
 };
 
 export default User;
