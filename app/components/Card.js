@@ -1,7 +1,7 @@
 // Card component for displaying in feed
 
 import React from "react";
-import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 
 import colors from "../config/colors";
 import AppText from "../components/AppText";
@@ -22,27 +22,24 @@ function Card({ name, description, onPress }) {
 const styles = StyleSheet.create({
 	card: {
 		borderRadius: 15,
-		backgroundColor: colors.white,
+		backgroundColor: "white",
 		marginBottom: 20,
 		overflow: "hidden",
 		width: "90%",
 		marginLeft: 20,
 		marginTop: 20,
+		flex: 1,
+		alignItems: "center",
 	},
-	image: {
-		width: "100%",
-		height: 200,
-	},
-	details: {
+	description: {
 		padding: 20,
+		textAlign: "center",
 	},
-	title: {
-		marginBottom: 10,
-	},
-	price: {
-		color: colors.secondary,
+	name: {
+		marginTop: 10,
+		alignSelf: "center",
+		fontSize: 20,
 		fontWeight: "bold",
-		fontSize: 18,
 	},
 });
 export default Card;
