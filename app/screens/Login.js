@@ -12,17 +12,23 @@ import {
 } from "../components/FormComponents/index.js";
 
 import client from "../api/client";
+import User from "../context/User";
 
 const validationSchema = Yup.object().shape({
 	username: Yup.string().required().label("Username"),
 	password: Yup.string().required().min(4).label("Password"),
 });
 
-const LoginScreen = ({ setUser }) => {
+const LoginScreen = () => {
+	const { login } = User();
+	const [loginFail, setLoginFail] = useState(false);
 	const handleSubmit = async (userInfo) => {
 		const response = await client.post("/user/login", userInfo);
-		setUser(response.data);
+		if (!response.ok) setLoginFail(true);
+		setLoginFail(false);
+		login(response.data);
 	};
+
 	return (
 		<Screen style={styles.container}>
 			<Form

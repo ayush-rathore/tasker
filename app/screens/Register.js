@@ -13,16 +13,22 @@ import {
 } from "../components/FormComponents";
 
 import client from "../api/client";
+import User from "../context/User";
 
 const validationSchema = Yup.object().shape({
 	username: Yup.string().required().label("Username"),
 	password: Yup.string().required().min(4).label("Password"),
 });
 
-const RegisterScreen = ({ setUser }) => {
+const RegisterScreen = () => {
+	const { login } = User();
+	const [loginFail, setLoginFail] = useState(false);
+
 	const handleSubmit = async (userInfo) => {
 		const response = await client.post("/user/signup", userInfo);
-		setUser(response.data);
+		login(response.data);
+		if (!response.ok) setLoginFail(true);
+		setLoginFail(false);
 	};
 
 	return (
