@@ -7,10 +7,9 @@ import colors from "../config/colors";
 function WelcomeScreen({ navigation }) {
 	return (
 		<Screen style={styles.container}>
-			<Text style={styles.text}>Tasker</Text>
 			<View style={styles.welcome}>
 				<Image
-					source={require("../assets/images/home.png")}
+					source={require("../assets/images/Tasker.png")}
 					style={styles.welcomeImage}
 				/>
 			</View>
@@ -26,7 +25,7 @@ function WelcomeScreen({ navigation }) {
 						onPress={() => navigation.navigate("Register")}
 					>
 						{" "}
-						Register{" "}
+						Register
 					</Text>
 				</Text>
 			</View>
@@ -42,15 +41,15 @@ const styles = StyleSheet.create({
 	welcome: {
 		alignItems: "center",
 		position: "absolute",
-		top: 200,
+		top: 150,
 	},
 	welcomeImage: {
-		width: 300,
-		height: 250,
+		width: 400,
+		height: 300,
 	},
 	button: {
 		flex: 1,
-		top: 200,
+		top: 150,
 		justifyContent: "center",
 		alignItems: "center",
 		width: "100%",
