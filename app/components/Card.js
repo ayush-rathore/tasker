@@ -22,7 +22,7 @@ function Card({ name, description, onPress }) {
 const styles = StyleSheet.create({
 	card: {
 		borderRadius: 15,
-		backgroundColor: "white",
+		backgroundColor: colors.white,
 		marginBottom: 20,
 		overflow: "hidden",
 		width: "90%",
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	description: {
-		padding: 20,
+		padding: 15,
 		textAlign: "center",
 	},
 	name: {
