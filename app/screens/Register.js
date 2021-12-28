@@ -13,7 +13,7 @@ import {
 } from "../components/FormComponents";
 
 import useApi from "../hooks/useApi";
-import auth from "../api/register";
+import auth from "../api/auth";
 import User from "../context/User";
 import Spinner from "react-native-loading-spinner-overlay";
 
@@ -28,19 +28,14 @@ const RegisterScreen = ({ navigation }) => {
 
 	const AsyncAlert = async () => {
 		new Promise((resolve) => {
-			Alert.alert(
-				"Success",
-				"User registered successfully! You can now login.",
-				[
-					{
-						text: "OK",
-						onPress: () => {
-							resolve("yes");
-							navigation.navigate("Login");
-						},
+			Alert.alert("Success", "User registered successfully!", [
+				{
+					text: "OK",
+					onPress: () => {
+						resolve("yes");
 					},
-				]
-			);
+				},
+			]);
 		});
 	};
 

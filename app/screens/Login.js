@@ -1,7 +1,7 @@
 //Login Screen
 
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import Screen from "../components/Screen";
 import * as Yup from "yup";
 import {
@@ -14,7 +14,7 @@ import {
 import Spinner from "react-native-loading-spinner-overlay";
 
 import useApi from "../hooks/useApi";
-import auth from "../api/login";
+import auth from "../api/auth";
 import User from "../context/User";
 
 const validationSchema = Yup.object().shape({
@@ -23,12 +23,15 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = () => {
-	const { login } = User();
+	const { error, login } = User();
 
 	const loginApi = useApi(auth.login);
 
 	const handleSubmit = async (userInfo) => {
 		const response = await loginApi.request(userInfo);
+		if (!response.ok) {
+			return Alert.alert("Error", "Invalid username or password!");
+		}
 		login(response.data);
 	};
 
