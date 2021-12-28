@@ -1,7 +1,7 @@
 // Register Screen
 
-import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import React from "react";
+import { Alert, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
@@ -12,28 +12,48 @@ import {
 	SubmitButton,
 } from "../components/FormComponents";
 
-import client from "../api/client";
+import useApi from "../hooks/useApi";
+import auth from "../api/register";
 import User from "../context/User";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const validationSchema = Yup.object().shape({
 	username: Yup.string().required().label("Username"),
 	password: Yup.string().required().min(4).label("Password"),
 });
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
 	const { login } = User();
-	const [loginFail, setLoginFail] = useState(false);
+	const registerApi = useApi(auth.register);
+
+	const AsyncAlert = async () => {
+		new Promise((resolve) => {
+			Alert.alert(
+				"Success",
+				"User registered successfully! You can now login.",
+				[
+					{
+						text: "OK",
+						onPress: () => {
+							resolve("yes");
+							navigation.navigate("Login");
+						},
+					},
+				]
+			);
+		});
+	};
 
 	const handleSubmit = async (userInfo) => {
-		const response = await client.post("/user/signup", userInfo);
+		const response = await registerApi.request(userInfo);
 		login(response.data);
-		if (!response.ok) setLoginFail(true);
-		setLoginFail(false);
+		await AsyncAlert();
 	};
 
 	return (
 		<>
 			<Screen style={styles.container}>
+				<Spinner visible={registerApi.loading} color="#1E88E5" />
 				<Form
 					initialValues={{ username: "", password: "" }}
 					onSubmit={handleSubmit}

@@ -6,11 +6,12 @@ import { FlatList, StyleSheet } from "react-native";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import ActionButton from "react-native-action-button";
 
 import client from "../api/client";
 import User from "../context/User";
 
-const TaskScreen = () => {
+const TaskScreen = ({ navigation }) => {
 	const { user, tasks, addTask } = User();
 
 	const getTasks = async () => {
@@ -20,7 +21,7 @@ const TaskScreen = () => {
 
 	useEffect(() => {
 		getTasks();
-	}, []);
+	}, [tasks]);
 
 	return (
 		<Screen style={styles.screen}>
@@ -31,9 +32,13 @@ const TaskScreen = () => {
 					<Card
 						name={item.name}
 						description={item.description}
-						onPress={() => console.log(`${item.name}`)}
+						taskID={item._id}
 					/>
 				)}
+			/>
+			<ActionButton
+				buttonColor="#1E88E5"
+				onPress={() => navigation.navigate("AddTask")}
 			/>
 		</Screen>
 	);
@@ -41,7 +46,7 @@ const TaskScreen = () => {
 
 const styles = StyleSheet.create({
 	screen: {
-		backgroundColor: colors.light,
+		backgroundColor: colors.primary,
 	},
 });
 

@@ -1,7 +1,7 @@
 //Login Screen
 
-import React, { useState } from "react";
-import { StyleSheet, Image } from "react-native";
+import React from "react";
+import { StyleSheet } from "react-native";
 import Screen from "../components/Screen";
 import * as Yup from "yup";
 import {
@@ -11,7 +11,10 @@ import {
 	SubmitButton,
 } from "../components/FormComponents/index.js";
 
-import client from "../api/client";
+import Spinner from "react-native-loading-spinner-overlay";
+
+import useApi from "../hooks/useApi";
+import auth from "../api/login";
 import User from "../context/User";
 
 const validationSchema = Yup.object().shape({
@@ -21,16 +24,17 @@ const validationSchema = Yup.object().shape({
 
 const LoginScreen = () => {
 	const { login } = User();
-	const [loginFail, setLoginFail] = useState(false);
+
+	const loginApi = useApi(auth.login);
+
 	const handleSubmit = async (userInfo) => {
-		const response = await client.post("/user/login", userInfo);
-		if (!response.ok) setLoginFail(true);
-		setLoginFail(false);
+		const response = await loginApi.request(userInfo);
 		login(response.data);
 	};
 
 	return (
 		<Screen style={styles.container}>
+			<Spinner visible={loginApi.loading} color="#1E88E5" />
 			<Form
 				initialValues={{ username: "", password: "" }}
 				onSubmit={handleSubmit}
