@@ -16,7 +16,7 @@ function Card({ name, dateCreated, description, taskID }) {
 	const taskApi = useApi(task.remove);
 	let date = dateCreated.substring(0, 10);
 	const handleDelete = () => {
-		Alert.alert("Delete task", "Sure, you want to delete the task?", [
+		Alert.alert("Delete task", "Sure, you wanna delete the task?", [
 			{
 				text: "No",
 				style: "cancel",

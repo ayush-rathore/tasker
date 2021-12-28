@@ -10,7 +10,7 @@ function Logout() {
 		<TouchableOpacity
 			style={styles.container}
 			onPress={() => {
-				Alert.alert("Log out?", "Are you sure you want to log out?", [
+				Alert.alert("Log out", "Sure, you wanna log out?", [
 					{ text: "No", style: "cancel" },
 					{ text: "Yes", onPress: () => setTimeout(logout, 500) },
 				]);

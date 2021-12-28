@@ -24,7 +24,7 @@ const TaskScreen = ({ navigation }) => {
 
 	useEffect(() => {
 		getTasks();
-	}, [tasks]);
+	});
 
 	return (
 		<Screen style={styles.screen}>
