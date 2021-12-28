@@ -22,25 +22,16 @@ const AddTask = ({ navigation }) => {
 	const { user, addTask } = User();
 	const taskApi = useApi(task.add);
 
-	const AsyncAlert = async () => {
-		new Promise((resolve) => {
-			Alert.alert("Success", "Task added!", [
-				{
-					text: "OK",
-					onPress: () => {
-						resolve("yes");
-						// navigation.navigate("Task");
-					},
-				},
-			]);
-		});
-	};
-
 	const handleSubmit = async (taskInfo) => {
 		taskInfo.userID = user._id;
 		const response = await taskApi.request(taskInfo);
 		addTask(response.data);
-		await AsyncAlert();
+		Alert.alert("Success", "Task added!", [
+			{
+				text: "OK",
+				onPress: () => navigation.navigate("Task"),
+			},
+		]);
 	};
 
 	return (
