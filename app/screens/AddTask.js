@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
 
 const AddTask = ({ navigation }) => {
 	const { user, addTask } = User();
-	const taskApi = useApi(task.addTask);
+	const taskApi = useApi(task.add);
 
 	const AsyncAlert = async () => {
 		new Promise((resolve) => {
