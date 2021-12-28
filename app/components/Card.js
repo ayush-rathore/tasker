@@ -12,14 +12,20 @@ import useApi from "../hooks/useApi";
 import task from "../api/task";
 import Spinner from "react-native-loading-spinner-overlay";
 
-function Card({ name, description, taskID }) {
+function Card({ name, dateCreated, description, taskID }) {
 	const taskApi = useApi(task.remove);
-
-	const handleDelete = async () => {
-		await taskApi.request(taskID);
-		Alert.alert("Success", "Task deleted successfully!", [
+	let date = dateCreated.substring(0, 10);
+	const handleDelete = () => {
+		Alert.alert("Delete task", "Sure, you want to delete the task?", [
 			{
-				text: "OK",
+				text: "No",
+				style: "cancel",
+			},
+			{
+				text: "Yes",
+				onPress: async () => {
+					await taskApi.request(taskID);
+				},
 			},
 		]);
 	};
@@ -29,6 +35,7 @@ function Card({ name, description, taskID }) {
 			<Spinner visible={taskApi.loading} color="#1E88E5" />
 			<View style={styles.details}>
 				<AppText style={styles.name}>{name}</AppText>
+				<AppText style={styles.date}>{date}</AppText>
 				<AppText style={styles.description}>{description}</AppText>
 				<TouchableOpacity style={styles.delete} onPress={handleDelete}>
 					<AntDesign name="delete" size={24} color={colors.black} />
@@ -51,8 +58,12 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		elevation: 3,
 	},
+	date: {
+		textAlign: "center",
+		padding: 10,
+	},
 	description: {
-		padding: 15,
+		paddingBottom: 15,
 		textAlign: "center",
 	},
 	name: {
