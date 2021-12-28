@@ -13,7 +13,7 @@ import task from "../api/task";
 import Spinner from "react-native-loading-spinner-overlay";
 
 function Card({ name, description, taskID }) {
-	const taskApi = useApi(task.removeTask);
+	const taskApi = useApi(task.remove);
 
 	const handleDelete = async () => {
 		await taskApi.request(taskID);
