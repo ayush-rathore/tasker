@@ -25,11 +25,12 @@ const AddTask = ({ navigation }) => {
 	const handleSubmit = async (taskInfo) => {
 		taskInfo.userID = user._id;
 		const response = await taskApi.request(taskInfo);
-		addTask(response.data);
 		Alert.alert("Success", "Task added!", [
 			{
 				text: "OK",
-				onPress: () => navigation.navigate("Task"),
+				onPress: () => {
+					navigation.navigate("Task");
+				},
 			},
 		]);
 	};
