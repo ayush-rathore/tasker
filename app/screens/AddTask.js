@@ -1,33 +1,51 @@
 //Posting item screen
 
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import * as Yup from "yup";
 
 import { Form, FormField, SubmitButton } from "../components/FormComponents";
 
 import Screen from "../components/Screen";
 
-import client from "../api/client";
+import useApi from "../hooks/useApi";
+import task from "../api/task";
 import User from "../context/User";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const validationSchema = Yup.object().shape({
 	name: Yup.string().required().min(5).label("Name"),
 	description: Yup.string().required().min(5).label("Description"),
 });
 
-const AddTask = () => {
+const AddTask = ({ navigation }) => {
 	const { user, addTask } = User();
+	const taskApi = useApi(task.addTask);
+
+	const AsyncAlert = async () => {
+		new Promise((resolve) => {
+			Alert.alert("Success", "Task added!", [
+				{
+					text: "OK",
+					onPress: () => {
+						resolve("yes");
+						// navigation.navigate("Task");
+					},
+				},
+			]);
+		});
+	};
 
 	const handleSubmit = async (taskInfo) => {
 		taskInfo.userID = user._id;
-		const response = await client.post("/task/add", taskInfo);
+		const response = await taskApi.request(taskInfo);
 		addTask(response.data);
-		console.log(response.data);
+		await AsyncAlert();
 	};
 
 	return (
 		<Screen style={styles.container}>
+			<Spinner visible={taskApi.loading} color="#1E88E5" />
 			<Form
 				initialValues={{
 					name: "",
