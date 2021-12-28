@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "tasker",
+    "name": "Tasker",
     "slug": "tasker",
-    "version": "1.0.0",
+    "version": "0.1.1",
     "orientation": "portrait",
     "icon": "./app/assets/images/logo.png",
     "splash": {
@@ -23,7 +23,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/images/logo.png",
         "backgroundColor": "#1E88E5"
-      }
+      },
+      "package": "com.freaker.tasker",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./app/assets/images/logo.png"
