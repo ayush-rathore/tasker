@@ -1,11 +1,9 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import TaskScreen from "../screens/Task";
 import AddTask from "../screens/AddTask";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { AntDesign } from "@expo/vector-icons";
+import Logout from "../components/Logout";
 
 const Stack = createStackNavigator();
 
@@ -15,13 +13,12 @@ const TaskNavigator = () => (
 			name="Task"
 			component={TaskScreen}
 			options={{
-				// headerShown: false,
 				title: "My Tasks",
-				headerRight: () => (
-					<TouchableOpacity style={styles.container}>
-						<AntDesign name="logout" size={24} color="black" />
-					</TouchableOpacity>
-				),
+				headerRight: () => <Logout />,
+				headerTitleStyle: {
+					fontSize: 23,
+				},
+				headerTitleAlign: "center",
 			}}
 		/>
 		<Stack.Screen
@@ -31,11 +28,5 @@ const TaskNavigator = () => (
 		/>
 	</Stack.Navigator>
 );
-
-const styles = StyleSheet.create({
-	container: {
-		marginRight: 15,
-	},
-});
 
 export default TaskNavigator;
