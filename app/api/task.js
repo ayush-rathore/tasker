@@ -1,9 +1,9 @@
 import client from "./client";
 
-const getTask = (user) => client.get(`/task/get/${user._id}`);
+const get = (userID) => client.get(`/task/get/${userID}`);
 
-const addTask = (taskInfo) => client.post("/task/add", taskInfo);
+const add = (taskInfo) => client.post("/task/add", taskInfo);
 
-const removeTask = (taskID) => client.post(`/task/remove/${taskID}`);
+const remove = (taskID) => client.post(`/task/remove/${taskID}`);
 
-export default { getTask, addTask, removeTask };
+export default { get, add, remove };
