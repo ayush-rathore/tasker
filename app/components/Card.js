@@ -1,21 +1,40 @@
 // Card component for displaying in feed
 
 import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 
 import colors from "../config/colors";
 import AppText from "../components/AppText";
+import { TouchableOpacity } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
-function Card({ name, description, onPress }) {
+import useApi from "../hooks/useApi";
+import task from "../api/task";
+import Spinner from "react-native-loading-spinner-overlay";
+
+function Card({ name, description, taskID }) {
+	const taskApi = useApi(task.removeTask);
+
+	const handleDelete = async () => {
+		await taskApi.request(taskID);
+		Alert.alert("Success", "Task deleted successfully!", [
+			{
+				text: "OK",
+			},
+		]);
+	};
+
 	return (
-		<TouchableOpacity onPress={onPress}>
-			<View style={styles.card}>
-				<View style={styles.details}>
-					<AppText style={styles.name}>{name}</AppText>
-					<AppText style={styles.description}>{description}</AppText>
-				</View>
+		<View style={styles.card}>
+			<Spinner visible={taskApi.loading} color="#1E88E5" />
+			<View style={styles.details}>
+				<AppText style={styles.name}>{name}</AppText>
+				<AppText style={styles.description}>{description}</AppText>
+				<TouchableOpacity style={styles.delete} onPress={handleDelete}>
+					<AntDesign name="delete" size={24} color={colors.black} />
+				</TouchableOpacity>
 			</View>
-		</TouchableOpacity>
+		</View>
 	);
 }
 
@@ -30,6 +49,7 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		flex: 1,
 		alignItems: "center",
+		elevation: 3,
 	},
 	description: {
 		padding: 15,
@@ -40,6 +60,11 @@ const styles = StyleSheet.create({
 		alignSelf: "center",
 		fontSize: 20,
 		fontWeight: "bold",
+	},
+	delete: {
+		justifyContent: "center",
+		alignItems: "center",
+		paddingBottom: 10,
 	},
 });
 export default Card;
