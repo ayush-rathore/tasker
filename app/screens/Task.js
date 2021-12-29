@@ -1,7 +1,7 @@
 // Listing all the items
 
-import React, { useEffect } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, StyleSheet, RefreshControl } from "react-native";
 
 import Card from "../components/Card";
 import Screen from "../components/Screen";
@@ -16,19 +16,32 @@ import NoTask from "../components/NoTask";
 const TaskScreen = ({ navigation }) => {
 	const { user, tasks, addTask } = User();
 
+	const [refreshing, setRefreshing] = useState(false);
+
+	const onRefresh = React.useCallback(async () => {
+		setRefreshing(true);
+		const userID = user._id;
+		await client.get(`/task/get/${userID}`).then((res) => {
+			console.log(res.data);
+			addTask(res.data);
+		});
+		setRefreshing(false);
+	}, [refreshing]);
+
 	const getTasks = async () => {
 		const userID = user._id;
-		const response = await client.get(`/task/get/${userID}`);
-		addTask(response.data);
+		await client.get(`/task/get/${userID}`).then((res) => {
+			console.log(res.data);
+			addTask(res.data);
+		});
 	};
 
 	useEffect(() => {
 		getTasks();
-	});
+	}, []);
 
 	return (
 		<Screen style={styles.screen}>
-			<Spinner visible={!tasks.length} color="#1E88E5" />
 			{tasks.length == 0 ? (
 				<NoTask />
 			) : (
@@ -43,6 +56,12 @@ const TaskScreen = ({ navigation }) => {
 							taskID={item._id}
 						/>
 					)}
+					refreshControl={
+						<RefreshControl
+							refreshing={refreshing}
+							onRefresh={onRefresh}
+						/>
+					}
 				/>
 			)}
 			<AddButton onPress={() => navigation.navigate("AddTask")} />
@@ -53,6 +72,7 @@ const TaskScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 	screen: {
 		backgroundColor: colors.white,
+		paddingTop: 0,
 	},
 });
 
