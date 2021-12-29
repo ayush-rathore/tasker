@@ -2,16 +2,9 @@
 
 import React from "react";
 import { View } from "react-native";
-import Constants from "expo-constants";
 
 function Screen({ children, style }) {
-	return (
-		<View
-			style={[{ paddingTop: Constants.statusBarHeight, flex: 1 }, style]}
-		>
-			{children}
-		</View>
-	);
+	return <View style={[{ paddingTop: 10, flex: 1 }, style]}>{children}</View>;
 }
 
 export default Screen;
