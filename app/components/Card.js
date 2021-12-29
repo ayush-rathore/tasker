@@ -6,7 +6,7 @@ import { View, StyleSheet, Alert } from "react-native";
 import colors from "../config/colors";
 import AppText from "../components/AppText";
 import { TouchableOpacity } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "react-native-vector-icons";
 
 import useApi from "../hooks/useApi";
 import task from "../api/task";

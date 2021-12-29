@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Alert } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "react-native-vector-icons";
 import User from "../context/User";
 
 function Logout() {
