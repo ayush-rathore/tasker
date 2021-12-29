@@ -41,8 +41,13 @@ const RegisterScreen = ({ navigation }) => {
 
 	const handleSubmit = async (userInfo) => {
 		const response = await registerApi.request(userInfo);
-		login(response.data);
-		await AsyncAlert();
+		if (!response.ok) {
+			return Alert.alert(
+				"Error",
+				"This username is already taken! Try another one"
+			);
+		}
+		await AsyncAlert().then(() => login(response.data));
 	};
 
 	return (
