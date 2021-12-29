@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddTask = ({ navigation }) => {
-	const { user, addTask } = User();
+	const { user } = User();
 	const taskApi = useApi(task.add);
 
 	const handleSubmit = async (taskInfo) => {
