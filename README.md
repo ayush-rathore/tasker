@@ -1,6 +1,17 @@
-# Tasker
+<p align="center">
+    <a href="https://expo.dev/@freaker/tasker">
+        <img src="app/assets/images/icon.png" width="100" alt="Tasker Logo"/>
+    </a>
+    <h1 align="center"> Tasker </h1>
+</p>
 
-A minimal android app made using React Native to manage your daily tasks.
+<p align="center">
+    A minimal android app to manage your daily tasks.
+</p>
+
+<p align="center">
+    This repository consists of a <strong>React Native Application</strong> built with <strong>Expo CLI</strong>.
+</p>
 
 ## Acknowledgements
 
