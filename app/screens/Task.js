@@ -8,32 +8,28 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 
 import User from "../context/User";
-import client from "../api/client";
+import useApi from "../hooks/useApi";
+import task from "../api/task";
 import Spinner from "react-native-loading-spinner-overlay";
 import AddButton from "../components/AddButton";
 import NoTask from "../components/NoTask";
 
 const TaskScreen = ({ navigation }) => {
 	const { user, tasks, addTask } = User();
+	const taskApi = useApi(task.get);
 
 	const [refreshing, setRefreshing] = useState(false);
 
 	const onRefresh = React.useCallback(async () => {
 		setRefreshing(true);
-		const userID = user._id;
-		await client.get(`/task/get/${userID}`).then((res) => {
-			console.log(res.data);
-			addTask(res.data);
-		});
+		getTasks();
 		setRefreshing(false);
 	}, [refreshing]);
 
 	const getTasks = async () => {
 		const userID = user._id;
-		await client.get(`/task/get/${userID}`).then((res) => {
-			console.log(res.data);
-			addTask(res.data);
-		});
+		const response = await taskApi.request(userID);
+		addTask(response.data);
 	};
 
 	useEffect(() => {
@@ -42,6 +38,7 @@ const TaskScreen = ({ navigation }) => {
 
 	return (
 		<Screen style={styles.screen}>
+			<Spinner visible={taskApi.loading} color="#1E88E5" />
 			{tasks.length == 0 ? (
 				<NoTask />
 			) : (
