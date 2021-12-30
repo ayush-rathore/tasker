@@ -1,35 +1,34 @@
-
 # Tasker
 
 A minimal android app made using React Native to manage your daily tasks.
 
-
 ## Acknowledgements
 
- - [Expo](https://expo.dev/)
- - [Formik](https://formik.org/)
- - [Yup](https://github.com/jquense/yup)
- - [Apisauce](https://github.com/infinitered/apisauce)
+-   [Expo](https://expo.dev/)
+-   [Formik](https://formik.org/)
+-   [Yup](https://github.com/jquense/yup)
+-   [Apisauce](https://github.com/infinitered/apisauce)
 
 ## Application features
 
-* `Screens` - Welcome, Register, Login, Add Task, View Tasks.
+-   `Screens` - Welcome, Register, Login, Add Task, View Tasks.
 
-* `Animation` - Activity Indicator & React-Spinner
+-   `Animation` - Activity Indicator & React-Spinner
 
-* `Authentication` - User authentication (Register, Login/out).
+-   `Authentication` - User authentication (Register, Login/out).
 
-* `Cache Layer` - Caching API Data.
+-   `Cache Layer` - Caching API Data.
 
-* `Custom and Reusable Hooks` - API and Client.
+-   `Custom and Reusable Hooks` - API and Client.
 
-* `Form Validation` - Using Formik.
+-   `Form Validation` - Using Formik.
 
-* `Gesture Handler` - Pull to refresh.
+-   `Gesture Handler` - Pull to refresh.
 
-* `Navigation` - Using React Navigation and Stack Navigator.
+-   `Navigation` - Using React Navigation and Stack Navigator.
 
-* `Reusable Components` - Button, Icon, Forms, Screen, Text, Text Input and more.
+-   `Reusable Components` - Button, Icon, Forms, Screen, Text, Text Input and more.
+
 ## Run Locally
 
 Clone the project
@@ -56,7 +55,6 @@ Start the expo server
   expo start
 ```
 
-
 ## Screenshots
 
 ![Welcome](https://github.com/ayush-rathore/tasker/raw/main/screenshots/1.png)
@@ -67,7 +65,6 @@ Start the expo server
 ![Delete Task](https://github.com/ayush-rathore/tasker/raw/main/screenshots/6.png)
 ![Log Out](https://github.com/ayush-rathore/tasker/raw/main/screenshots/7.png)
 
-
 ## Tech Stack
 
 **Client:** React-Native, Expo-SDK
@@ -76,17 +73,10 @@ Start the expo server
 
 **Database:** MongoDB
 
-
 ## Contributing
 
 Contributions are always welcome!
 
-
-
 ## Feedback
 
 If you have any feedback, please reach out to me at heyfreaker@gmail.com
-
-
-![Logo](https://github.com/ayush-rathore/tasker/raw/main/app/assets/images/icon.png)
-
