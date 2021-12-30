@@ -68,13 +68,15 @@ Start the expo server
 
 ## Screenshots
 
-<img src="screenshots/1.png" height="600" width="300" alt="Welcome"/>
-<img src="screenshots/2.png" height="600" width="300" alt="Login"/>
-<img src="screenshots/3.png" height="600" width="300" alt="View Tasks"/>
-<img src="screenshots/4.png" height="600" width="300" alt="Add Tasks"/>
-<img src="screenshots/5.png" height="600" width="300" alt="Task Added"/>
-<img src="screenshots/6.png" height="600" width="300" alt="Delete Task"/>
-<img src="screenshots/7.png" height="600" width="300" alt="Logout"/>
+<p align="center">
+<img src="screenshots/1.png" height="600" width="400" alt="Welcome"/>
+<img src="screenshots/2.png" height="600" width="400" alt="Login"/>
+<img src="screenshots/3.png" height="600" width="400" alt="View Tasks"/>
+<img src="screenshots/4.png" height="600" width="400" alt="Add Tasks"/>
+<img src="screenshots/5.png" height="600" width="400" alt="Task Added"/>
+<img src="screenshots/6.png" height="600" width="400" alt="Delete Task"/>
+<img src="screenshots/7.png" height="600" width="400" alt="Logout"/>
+</p>
 
 ## Tech Stack
 
