@@ -68,13 +68,13 @@ Start the expo server
 
 ## Screenshots
 
-![Welcome](https://github.com/ayush-rathore/tasker/raw/main/screenshots/1.png)
-![Login](https://github.com/ayush-rathore/tasker/raw/main/screenshots/2.png)
-![Tasks](https://github.com/ayush-rathore/tasker/raw/main/screenshots/3.png)
-![Add Task](https://github.com/ayush-rathore/tasker/raw/main/screenshots/4.png)
-![Task Added](https://github.com/ayush-rathore/tasker/raw/main/screenshots/5.png)
-![Delete Task](https://github.com/ayush-rathore/tasker/raw/main/screenshots/6.png)
-![Log Out](https://github.com/ayush-rathore/tasker/raw/main/screenshots/7.png)
+<img src="screenshots/1.png" height="600" width="300" alt="Welcome"/>
+<img src="screenshots/2.png" height="600" width="300" alt="Login"/>
+<img src="screenshots/3.png" height="600" width="300" alt="View Tasks"/>
+<img src="screenshots/4.png" height="600" width="300" alt="Add Tasks"/>
+<img src="screenshots/5.png" height="600" width="300" alt="Task Added"/>
+<img src="screenshots/6.png" height="600" width="300" alt="Delete Task"/>
+<img src="screenshots/7.png" height="600" width="300" alt="Logout"/>
 
 ## Tech Stack
 
