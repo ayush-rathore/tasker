@@ -13,6 +13,12 @@
     This repository consists of a <strong>React Native Application</strong> built with <strong>Expo CLI</strong>.
 </p>
 
+## App Showcase
+
+<p align="center">
+    <img src="screenshots/Mockup.png" width="1280" alt="Tasker Screens Mockup"/>
+</p>
+
 ## Acknowledgements
 
 -   [Expo](https://expo.dev/)
@@ -65,18 +71,6 @@ Start the expo server
 ```bash
   expo start
 ```
-
-## Screenshots
-
-<p align="center">
-<img src="screenshots/1.png" height="600" width="400" alt="Welcome"/>
-<img src="screenshots/2.png" height="600" width="400" alt="Login"/>
-<img src="screenshots/3.png" height="600" width="400" alt="View Tasks"/>
-<img src="screenshots/4.png" height="600" width="400" alt="Add Tasks"/>
-<img src="screenshots/5.png" height="600" width="400" alt="Task Added"/>
-<img src="screenshots/6.png" height="600" width="400" alt="Delete Task"/>
-<img src="screenshots/7.png" height="600" width="400" alt="Logout"/>
-</p>
 
 ## Tech Stack
 

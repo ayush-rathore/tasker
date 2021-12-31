@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tasker",
     "slug": "tasker",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "orientation": "portrait",
     "icon": "./app/assets/images/icon.png",
     "splash": {
