@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://expo.dev/@freaker/tasker">
-        <img src="app/assets/images/icon.png" width="100" alt="Tasker Logo"/>
+        <img src="frontend/app/assets/images/icon.png" width="100" alt="Tasker Logo"/>
     </a>
     <h1 align="center"> Tasker </h1>
 </p>
@@ -16,7 +16,7 @@
 ## App Showcase
 
 <p align="center">
-    <img src="screenshots/Mockup.png" width="1280" alt="Tasker Screens Mockup"/>
+    <img src="frontend/screenshots/Mockup.png" width="1280" alt="Tasker Screens Mockup"/>
 </p>
 
 ## Acknowledgements
@@ -71,6 +71,14 @@ Start the expo server
 ```bash
   expo start
 ```
+
+## Environment Variables
+
+To run this project, you'll need to create a `.env` file in `backend` with the following env variables
+
+`PORT`
+
+`MONGO_URI`
 
 ## Tech Stack
 
